@@ -5,7 +5,7 @@ const getContracts = async (req, res) => {
     console.log(contracts);
 
     res.render("index", {
-        page: 'index',
+        page: 'Prueba tecnica Podo | Inicio',
         contracts
     })
     
@@ -17,7 +17,7 @@ const getContractByCupon = async (req, res) => {
     console.log(contracts.dataValues);
 
     res.render("cupon", {
-        page: 'cupon',
+        page: 'Prueba tecnica Podo | Cupon',
         id: contracts.dataValues.id,
         origen: contracts.dataValues.origen,
         estado: contracts.dataValues.estado,
