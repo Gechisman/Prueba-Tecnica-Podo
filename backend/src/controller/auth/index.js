@@ -5,7 +5,35 @@ const filePath = path.resolve('src/data/users.json');
 
 const login = async (req, res) => {
     res.render('auth/login')
-    
+}
+
+const loginUser = async (req, res) => {
+    const { username, password } = req.body;
+    console.log(username, password);
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) return res.status(500).send('Error leyendo usuarios');
+
+        let users = [];
+
+        try {
+            users = JSON.parse(data);
+        } catch {
+            return res.status(500).send('Error reading user data');
+        }
+
+        const user = users.find(u => u.username === username);
+
+        if (!user) {
+            return res.status(400).send('User not found');
+        }
+
+        if (user.password !== password) { // Aquí ideal: comparar hash
+            return res.status(400).send('Wrong password');
+        }
+
+        res.redirect('../contracts');
+  });
 }
 
 const register = async (req, res) => {
@@ -44,7 +72,7 @@ const registerUser = async (req, res) => {
     if (userExists) {
       return res.status(400).send('User already registered');
     }
-    
+
     users.push(newUser);
 
     fs.writeFile(filePath, JSON.stringify(users, null, 2), (err) => {
@@ -52,13 +80,16 @@ const registerUser = async (req, res) => {
         return res.status(500).send('Failed to save user data');
       }
 
-      res.status(200).send('Successfully registered user');
+      res.render('auth/login', {
+        message: 'User registered successfully, please login'
+      });
     });
   });
 }
 
 export {
     login,
+    loginUser,
     register,
     registerUser
 }

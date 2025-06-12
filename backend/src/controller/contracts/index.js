@@ -4,7 +4,7 @@ const getContracts = async (req, res) => {
     const contracts = await Contracts.findAll();
     console.log(contracts);
 
-    res.render("index", {
+    res.render("contracts", {
         page: 'Prueba tecnica Podo | Inicio',
         contracts
     })
