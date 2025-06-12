@@ -1,13 +1,16 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  new Tabulator("#example-table", {
-    data: contracts, // <-- datos desde el backend
+  new Tabulator("#contracts-table", {
+    data: contracts,
     layout: "fitColumns",
+	pagination: "local",
+    paginationSize: 25,
+    paginationSizeSelector: [25, 50, 100, 200],
     columns: [
-      { title: "ID", field: "id" },
-      { title: "Origen", field: "origen" },
-      { title: "Estado", field: "estado" },
-      { title: "Cupón", field: "cupon" },
+      { title: "ID", field: "id", headerFilter: 'input', hozAlign: 'center' },
+      { title: "Origen", field: "origen", headerFilter: 'input', hozAlign: 'center' },
+      { title: "Estado", field: "estado", headerFilter: 'input', hozAlign: 'center' },
+      { title: "Cupón", field: "cupon", headerFilter: 'input', hozAlign: 'center' },
     ],
   });
 });

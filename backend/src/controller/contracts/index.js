@@ -1,4 +1,4 @@
-import Contracts from "../models/Contratos.js";
+import Contracts from "../../models/Contratos.js";
 
 const getContracts = async (req, res) => {
     const contracts = await Contracts.findAll();

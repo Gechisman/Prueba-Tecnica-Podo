@@ -1,9 +1,11 @@
 import express from 'express'
-import { getContracts, getContractByCupon } from '../controller/index.js'
+
+import authRoutes from './auth/index.js';
+import contractsRoutes from './contracts/index.js';
 
 const router = express.Router()
 
-router.get('/', getContracts)
-router.get('/contract/:cupon', getContractByCupon)
+router.use('/auth', authRoutes);
+router.use('/contracts', contractsRoutes);
 
 export default router
