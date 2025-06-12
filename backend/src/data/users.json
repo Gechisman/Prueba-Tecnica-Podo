@@ -1,22 +1,10 @@
 [
   {
     "username": "Gechisman",
-    "password": "123456"
-  },
-  {
-    "username": "rrrr",
-    "password": "qqqqqq"
+    "hashedPassword": "$2b$10$3lDNU575IusAJxmb0twhoOkmjJDcZc77DYhz2w7Ct64eafFj0hBra"
   },
   {
     "username": "rr",
-    "password": "rrrrrr"
-  },
-  {
-    "username": "r",
-    "password": "rrrrrr"
-  },
-  {
-    "username": "ro",
-    "password": "123123"
+    "hashedPassword": "$2b$10$Y7l9fEK8hCi8qYfjvywpdezY4IHZLoPfB3bbB7npucFtbdD1Ai4iG"
   }
 ]

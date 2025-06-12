@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import bcrypt from 'bcrypt';
 
 const filePath = path.resolve('src/data/users.json');
 
@@ -9,9 +10,8 @@ const login = async (req, res) => {
 
 const loginUser = async (req, res) => {
     const { username, password } = req.body;
-    console.log(username, password);
 
-    fs.readFile(filePath, 'utf8', (err, data) => {
+    fs.readFile(filePath, 'utf8', async (err, data) => {
         if (err) return res.status(500).send('Error leyendo usuarios');
 
         let users = [];
@@ -23,14 +23,13 @@ const loginUser = async (req, res) => {
         }
 
         const user = users.find(u => u.username === username);
-
+        console.log(user);
         if (!user) {
             return res.status(400).send('User not found');
         }
 
-        if (user.password !== password) { // Aquí ideal: comparar hash
-            return res.status(400).send('Wrong password');
-        }
+        const match = await bcrypt.compare(password, user.hashedPassword);
+        if (!match) return res.status(400).send('Wrong password');
 
         res.redirect('../contracts');
   });
@@ -42,7 +41,6 @@ const register = async (req, res) => {
 
 const registerUser = async (req, res) => {
     const { username, password, repeatPassword } = req.body;
-    console.log(req.body);
 
     if([username, password, repeatPassword].includes('')){
         return res.status(400).send(('All fields are required'))
@@ -54,9 +52,7 @@ const registerUser = async (req, res) => {
       return res.status(400).send('Password must be at least 6 characters long')
     }
 
-    const newUser = { username, password };
-
-    fs.readFile(filePath, 'utf8', (err, data) => {
+    fs.readFile(filePath, 'utf8', async (err, data) => {
     let users = [];
 
     if (!err && data) {
@@ -73,6 +69,8 @@ const registerUser = async (req, res) => {
       return res.status(400).send('User already registered');
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = { username, hashedPassword };
     users.push(newUser);
 
     fs.writeFile(filePath, JSON.stringify(users, null, 2), (err) => {
