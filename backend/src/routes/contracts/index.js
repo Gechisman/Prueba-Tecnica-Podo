@@ -4,6 +4,6 @@ import { getContracts, getContractByCupon } from '../../controller/contracts/ind
 const router = express.Router()
 
 router.get('/', getContracts)
-router.get('/:cupon', getContractByCupon)
+router.get('/cupon', getContractByCupon)
 
 export default router

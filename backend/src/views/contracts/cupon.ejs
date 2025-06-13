@@ -15,11 +15,6 @@
 
     <div class="w-full max-w-screen-xl mx-auto mt-4 mb-4" id="contracts-table"></div>
 
-    <form method="GET" action="/contracts/cupon">
-        <input type="text" name="cupon" id="cupon-input" placeholder="Escribe un cupón..." class="border p-2 rounded w-1/2" />
-        <button type="submit">Buscar</button>
-    </form>
-
 <%- include ('../partials/footer.ejs') %>
     <script>
         const contracts = <%- JSON.stringify(contracts) %>;

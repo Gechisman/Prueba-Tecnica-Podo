@@ -5,7 +5,9 @@ import bcrypt from 'bcrypt';
 const filePath = path.resolve('src/data/users.json');
 
 const login = async (req, res) => {
-    res.render('auth/login')
+    res.render('auth/login', {
+        page: 'Iniciar Sesión'
+    })
 }
 
 const loginUser = async (req, res) => {
@@ -36,7 +38,9 @@ const loginUser = async (req, res) => {
 }
 
 const register = async (req, res) => {
-    res.render('auth/register')
+    res.render('auth/register', {
+        page: 'Registrar'
+    })
 }
 
 const registerUser = async (req, res) => {

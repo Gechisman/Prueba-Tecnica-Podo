@@ -2,26 +2,24 @@ import Contracts from "../../models/Contratos.js";
 
 const getContracts = async (req, res) => {
     const contracts = await Contracts.findAll();
-    console.log(contracts);
 
     res.render("contracts", {
         page: 'Prueba tecnica Podo | Inicio',
-        contracts
+        contracts,
+        currentPath: req.path
     })
     
 }
 
 const getContractByCupon = async (req, res) => {
-    const contract_cupon = req.params.cupon
-    const contracts = await Contracts.findOne({ where: { cupon: contract_cupon } });
-    console.log(contracts.dataValues);
-
-    res.render("cupon", {
+    const contract_cupon = req.query.cupon
+    console.log(contract_cupon);
+    const contracts = await Contracts.findAll({ where: { cupon: contract_cupon } });
+    
+    res.render("contracts/cupon", {
         page: 'Prueba tecnica Podo | Cupon',
-        id: contracts.dataValues.id,
-        origen: contracts.dataValues.origen,
-        estado: contracts.dataValues.estado,
-        cupon: contracts.dataValues.cupon
+        contracts,
+        currentPath: 'cupon'
     })
 }
 
