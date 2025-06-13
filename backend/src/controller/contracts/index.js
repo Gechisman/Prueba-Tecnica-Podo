@@ -5,26 +5,27 @@ const getContracts = async (req, res) => {
 
     res.render("contracts", {
         page: 'Prueba tecnica Podo | Inicio',
-        contracts,
-        currentPath: req.path
+        contracts
     })
     
 }
 
-const getContractByCupon = async (req, res) => {
-    const contract_cupon = req.query.cupon
-    console.log(contract_cupon);
-    const contracts = await Contracts.findAll({ where: { cupon: contract_cupon } });
-    
-    res.render("contracts/cupon", {
-        page: 'Prueba tecnica Podo | Cupon',
-        contracts,
-        currentPath: 'cupon'
+const getContractsByFilter = async (req, res) => {
+    const { origen, estado, cupon } = req.query;
+    const where = {};
+    if (origen) where.origen = origen;
+    if (estado) where.estado = estado;
+    if (cupon) where.cupon = cupon;
+
+    const contracts = await Contracts.findAll({ where });
+    res.render("contracts/filter", {
+        page: 'Prueba tecnica Podo | Filtro',
+        contracts
     })
 }
 
 
 export {
     getContracts,
-    getContractByCupon,
+    getContractsByFilter,
 }

@@ -7,18 +7,64 @@
     <script src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+    <link rel="stylesheet" href="/css/tabulator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <title><%= page %></title>
 </head>
 <body>
     <%- include ('../partials/header.ejs') %>
 
-    <div class="w-full max-w-screen-xl mx-auto mt-4 mb-4" id="contracts-table"></div>
+    <div class="w-full max-w-screen-xl mx-auto mt-4 mb-6 shadow-lg border border-gray-200 rounded-lg overflow-hidden bg-white text-sm" id="contracts-table"></div>
 
-    <form method="GET" action="/contracts/cupon">
-        <input type="text" name="cupon" id="cupon-input" placeholder="Escribe un cupón..." class="border p-2 rounded w-1/2" />
-        <button type="submit">Buscar</button>
-    </form>
+<form method="GET" action="/contracts/filter" class="max-w-screen-xl mx-auto mt-6 mb-6 px-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+    
+    <div class="flex flex-col">
+      <label for="cupon-input" class="mb-1 text-sm font-medium text-gray-700">Cupón</label>
+      <input 
+        type="text" 
+        name="cupon" 
+        id="cupon-input" 
+        placeholder="Escribe un cupón..." 
+        class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-900 focus:outline-none"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="origen-input" class="mb-1 text-sm font-medium text-gray-700">Origen</label>
+      <input 
+        type="text" 
+        name="origen" 
+        id="origen-input" 
+        placeholder="Escribe un origen..." 
+        class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-900 focus:outline-none"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="estado-input" class="mb-1 text-sm font-medium text-gray-700">Estado</label>
+      <input 
+        type="text" 
+        name="estado" 
+        id="estado-input" 
+        placeholder="Escribe un estado..." 
+        class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-900 focus:outline-none"
+      />
+    </div>
+    
+  </div>
+
+  <div class="text-right">
+    <button 
+      type="submit" 
+      class="cursor-pointer bg-blue-900 hover:bg-blue-950 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition duration-300"
+    >
+      Buscar
+    </button>
+  </div>
+</form>
+
 
 <%- include ('../partials/footer.ejs') %>
     <script>

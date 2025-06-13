@@ -1,0 +1,49 @@
+*::before, *::after{
+  margin: 0;
+  padding: 0;
+}
+
+.tabulator {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.tabulator .tabulator-header {
+  background-color: #003770;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabulator .tabulator-col {
+  font-weight: 600;
+  color: #374151;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.tabulator .tabulator-header input {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 6px 8px;
+  font-size: 0.875rem;
+  color: #111827;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.tabulator .tabulator-header input:focus {
+  outline: none;
+  border-color: #003770;
+  box-shadow: 0 0 0 1px #003770;
+}
+
+.tabulator .tabulator-row:hover {
+  background-color: #003770;
+  color: white;
+}
+
+.tabulator .tabulator-cell {
+  padding: 5px 4px;
+}
