@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
+import cookieParser from 'cookie-parser';
 
 const filePath = path.resolve('src/data/users.json');
 
@@ -10,6 +12,16 @@ const login = async (req, res) => {
 
 const loginUser = async (req, res) => {
     const { username, password } = req.body;
+    const token = jwt.sign({ username }, process.env.SECRET_JWT, { 
+        expiresIn: '1h' 
+      });
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 3600000
+    });
 
     fs.readFile(filePath, 'utf8', async (err, data) => {
         if (err) {
@@ -34,6 +46,8 @@ const loginUser = async (req, res) => {
           return res.render('auth/login', { errorMessage: 'Wrong password' });
         }
 
+        //TODO: Pasar el usuario a la sesión (express-session).
+        //Si lo hago con jwt borrar express-session
         res.redirect('../contracts');
   });
 }
@@ -82,15 +96,21 @@ const registerUser = async (req, res) => {
       }
 
       res.render('auth/login', {
-        message: 'User registered successfully, please login'
+        errorMessage: null
       });
     });
   });
 }
 
+const logoutUser = (req, res) => {
+  res.clearCookie('token');
+  res.redirect('/auth/login');
+};
+
 export {
     login,
     loginUser,
     register,
-    registerUser
+    registerUser,
+    logoutUser
 }

@@ -6,5 +6,29 @@
   {
     "username": "rr",
     "hashedPassword": "$2b$10$Y7l9fEK8hCi8qYfjvywpdezY4IHZLoPfB3bbB7npucFtbdD1Ai4iG"
+  },
+  {
+    "username": "ro",
+    "hashedPassword": "$2b$10$JUHhBeUGcu6SYzbLKj1/zuNLjcwZmPkyKstZN5g2m0m09EiwKfcy6"
+  },
+  {
+    "username": "Rodrigo",
+    "hashedPassword": "$2b$10$MLmNJr4UshLQnKuIdMwEWOtGgA1pJj6lFmdFL40mpPFKwSAjuKr.e"
+  },
+  {
+    "username": "Rodrigo2",
+    "hashedPassword": "$2b$10$C/4voCURbUCY6Ar37dONjuqZh75Y1aP7EvojXnuxkiVyLi925tbgW"
+  },
+  {
+    "username": "rrrr",
+    "hashedPassword": "$2b$10$2grCJM4Awiuq8KaUdSOADu6sWFKFpQTWegADYtr2bpHaJN.f4aDSa"
+  },
+  {
+    "username": "rrr",
+    "hashedPassword": "$2b$10$K3y5JIWqM5ioa.RKBWwS3u7OwUtdMp4rdummf0ppvLQdm2rFSA7ky"
+  },
+  {
+    "username": "qw",
+    "hashedPassword": "$2b$10$PNa8rRpl8FBc30MQB36tCu3VTIqWpDea6f6j7qYOldD3vdSshDus2"
   }
 ]

@@ -5,7 +5,8 @@ const getContracts = async (req, res) => {
 
     res.render("contracts", {
         page: 'Prueba tecnica Podo | Inicio',
-        contracts
+        contracts,
+        username: req.user.username
     })
     
 }
@@ -20,7 +21,8 @@ const getContractsByFilter = async (req, res) => {
     const contracts = await Contracts.findAll({ where });
     res.render("contracts/filter", {
         page: 'Prueba tecnica Podo | Filtro',
-        contracts
+        contracts,
+        username: req.user.username
     })
 }
 

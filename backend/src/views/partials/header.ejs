@@ -1,16 +1,22 @@
 <header class="mt-6">
-    <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
-        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a href="/contracts" class="flex items-center ml-4">
-                <img src="https://cdn.prod.website-files.com/67a0b7c7b749ffb5278fd99b/67a1e6d44eb503ec51bdc1db_logo-podo.svg" class="mr-3 h-6 sm:h-9" alt="Podo Logo" />
-            </a>
-            <div class="flex items-center lg:order-2">
-                <a href="../auth/login" class="text-gray-800 hover:text-red-800 rounded-lg text-m px-4 lg:px-5 py-2 lg:py-2.5 mr-2 transition-colors duration-300 ease-in-out">
-                    
-                    Cerrar Sesión
-                    <i class="fas fa-sign-out-alt ml-2"></i>
-                </a>
-            </div>
-            
-    </nav>
+  <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+      <a href="/contracts" class="flex items-center ml-4">
+        <img src="https://cdn.prod.website-files.com/67a0b7c7b749ffb5278fd99b/67a1e6d44eb503ec51bdc1db_logo-podo.svg" class="mr-3 h-6 sm:h-9" alt="Podo Logo" />
+      </a>
+
+      <div class="flex items-center space-x-4 lg:order-2 ml-auto">
+        <% if (typeof username !== 'undefined') { %>
+          <span class="text-gray-700 font-medium hidden sm:inline">
+            Bienvenido, <span class="text-blue-900 font-semibold"><%= username %></span>
+          </span>
+        <% } %>
+        
+        <a href="/auth/logout" class="text-gray-800 hover:text-red-800 rounded-lg text-m px-4 lg:px-5 py-2 lg:py-2.5 mr-2 transition-colors duration-300 ease-in-out">
+          Cerrar Sesión
+          <i class="fas fa-sign-out-alt ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
 </header>
