@@ -25,7 +25,7 @@ const loginUser = async (req, res) => {
 
     fs.readFile(filePath, 'utf8', async (err, data) => {
         if (err) {
-          return res.render('auth/login', { errorMessage: 'Error reading users' });
+          return res.render('auth/login', { errorMessage: 'Error leyendo usuarios' });
         }
 
         let users = [];
@@ -33,17 +33,17 @@ const loginUser = async (req, res) => {
         try {
             users = JSON.parse(data);
         } catch {
-            return res.render('auth/login', { errorMessage: 'Error reading user data' });
+            return res.render('auth/login', { errorMessage: 'Error leyendo información' });
         }
 
         const user = users.find(u => u.username === username);
         if (!user) {
-          return res.render('auth/login', { errorMessage: 'User not found' });
+          return res.render('auth/login', { errorMessage: 'El usuario no existe' });
         }
 
         const match = await bcrypt.compare(password, user.hashedPassword);
         if (!match) {
-          return res.render('auth/login', { errorMessage: 'Wrong password' });
+          return res.render('auth/login', { errorMessage: 'Contraseña Incorrecta' });
         }
 
         //TODO: Pasar el usuario a la sesión (express-session).
@@ -60,13 +60,13 @@ const registerUser = async (req, res) => {
     const { username, password, repeatPassword } = req.body;
 
     if([username, password, repeatPassword].includes('')){
-        return res.render('auth/register', { errorMessage: 'All fields are required' })
+        return res.render('auth/register', { errorMessage: 'No puede haber campos vacíos' })
     }
      if (password !== repeatPassword) {
-      return res.render('auth/register', { errorMessage: 'Passwords do not match' })
+      return res.render('auth/register', { errorMessage: 'Las contraseñas no coinciden' })
     }
     if(password.length < 6) {
-      return res.render('auth/register', { errorMessage: 'Password must be at least 6 characters long' })
+      return res.render('auth/register', { errorMessage: 'La contraseña debe tener una longitud mínima de 6 carácteres' })
     }
 
     fs.readFile(filePath, 'utf8', async (err, data) => {
@@ -76,14 +76,14 @@ const registerUser = async (req, res) => {
       try {
         users = JSON.parse(data);
       } catch {        
-        return res.render('auth/register', { errorMessage: 'Error reading user data' });
+        return res.render('auth/register', { errorMessage: 'Error leyendo los datos de usuario' });
       }
     }
     
     const userExists = users.find(user => user.username === username);
 
     if (userExists) {
-        return res.render('auth/register', { errorMessage: 'User already registered' });
+        return res.render('auth/register', { errorMessage: 'Ya existe una cuenta con este usuario' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -92,7 +92,7 @@ const registerUser = async (req, res) => {
 
     fs.writeFile(filePath, JSON.stringify(users, null, 2), (err) => {
       if (err) {
-        return res.render('auth/register', { errorMessage: 'Failed to save user data' });
+        return res.render('auth/register', { errorMessage: 'Error al guardar los datos' });
       }
 
       res.render('auth/login', {

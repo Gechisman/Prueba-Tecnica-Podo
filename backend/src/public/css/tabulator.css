@@ -47,3 +47,35 @@
 .tabulator .tabulator-cell {
   padding: 5px 4px;
 }
+
+.tabulator .tabulator-footer .tabulator-paginator{
+  color: #003770
+}
+
+.tabulator .tabulator-footer .tabulator-page {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  color: #003770;
+  background-color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.tabulator .tabulator-footer .tabulator-page:hover {
+  color: white;
+  background-color: #003770;
+}
+
+.tabulator .tabulator-footer .tabulator-page.tabulator-page-active {
+  color: white;
+  background-color: #003770;
+  font-weight: bold;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .tabulator .tabulator-footer .tabulator-page:not(.disabled):hover {
+        cursor: pointer;
+        color: white;
+  background-color: #003770;
+    }
+}

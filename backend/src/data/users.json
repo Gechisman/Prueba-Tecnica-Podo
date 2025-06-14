@@ -30,5 +30,9 @@
   {
     "username": "qw",
     "hashedPassword": "$2b$10$PNa8rRpl8FBc30MQB36tCu3VTIqWpDea6f6j7qYOldD3vdSshDus2"
+  },
+  {
+    "username": "pepe",
+    "hashedPassword": "$2b$10$dEqvB4CIsppbnLhca1qdcuQ75J4sDRDf.L0K8DptxztyudUwvMTOm"
   }
 ]
