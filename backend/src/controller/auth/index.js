@@ -46,8 +46,6 @@ const loginUser = async (req, res) => {
           return res.render('auth/login', { errorMessage: 'Contraseña Incorrecta' });
         }
 
-        //TODO: Pasar el usuario a la sesión (express-session).
-        //Si lo hago con jwt borrar express-session
         res.redirect('../contracts');
   });
 }
